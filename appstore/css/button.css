@@ -1,0 +1,19 @@
+.add-button {
+    display: inline-block;
+    background-color: #000000; /* Blue background */
+    color: white; /* White text */
+    padding: 10px 20px; /* Padding for button */
+    text-decoration: none; /* Remove underline */
+    font-size: 16px; /* Font size */
+    border-radius: 5px; /* Rounded corners */
+    border: none; /* Remove border */
+    transition: background-color 0.3s ease; /* Smooth transition */
+    margin: 10px 0; /* Add margin for spacing */
+}
+
+.add-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    color: white; /* Keep text white */
+    text-decoration: none; /* Remove underline on hover */
+    cursor: pointer; /* Change cursor to pointer */
+}
