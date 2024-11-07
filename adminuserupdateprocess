@@ -1,0 +1,33 @@
+<?php
+include "connection.php";
+
+
+function sanitize_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+
+$fname = sanitize_input($_POST["firstName"]);
+$lname = sanitize_input($_POST["lastName"]);
+$email = sanitize_input($_POST["email"]);
+$pass = password_hash(sanitize_input($_POST["password"]), PASSWORD_DEFAULT); 
+$mobileno = sanitize_input($_POST["mobile"]);
+$gender = sanitize_input($_POST["gender"]);
+
+
+$stmt = $conn->prepare("UPDATE user SET fname=?, lname=?, password=?, mobile=?, gender=? WHERE email=?");
+$stmt->bind_param("ssssss", $fname, $lname, $pass, $mobileno, $gender, $email);
+
+
+if ($stmt->execute()) {
+    echo json_encode(["status" => "success", "message" => "User updated successfully"]);
+} else {
+    echo json_encode(["status" => "error", "message" => "Error updating record: " . $stmt->error]);
+}
+
+$stmt->close();
+$conn->close();
+?>
